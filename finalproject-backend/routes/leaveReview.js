@@ -18,7 +18,7 @@ const reviews = db.collection("reviews");
 router.get('/submit', (req, res) => {
     const queryParams = req.query; 
     console.log("req:", req);
-    const idFromTitle = queryParams.userEmail.toLowerCase() + "_" + queryParams.trail;
+    const idFromTitle = queryParams.userEmail.toLowerCase() + "_" + queryParams.name;
     reviews
     .doc(idFromTitle) 
     .set(queryParams) 
@@ -29,7 +29,8 @@ router.get('/submit', (req, res) => {
         console.log('error', error);
         res.send("Failed submission")
     })
-    res.redirect('http://localhost:3000/Trails')
+    if (queryParams.type === "trail") res.redirect('http://localhost:3000/Trails');
+    else res.redirect('http://localhost:3000/apres_ski')
 })
 
 

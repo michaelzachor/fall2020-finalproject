@@ -1,34 +1,28 @@
-// import { useState } from 'react';
-
-// let btntxt = ["More Info", "More Info", "More Info"];
-
-function Trails(reviewArray) {
-    console.log("array: ", reviewArray)
+function Apres(reviewArray) {
     return (
         <div>
             <h2>Trails</h2>
             <div>
                 <ul>
                     <li>
-                        <h3>Great Eastern</h3>
-                        <div />
-                        {/* <div className = "GrEaInfo"> */}
-                        <div className = "Great_Eastern">
+                        <h3>Strangefellows Pub</h3>
+                        {/* <div /> */}
+                        <div className = "Strangefellows_Pub">
                             <ul>
-                                <li><a href="/review/Great_Eastern" className="rateThis">Rate this trail!</a></li>
+                                <li><a href="/review/Strangefellows_Pub" className="rateThis">Rate this trail!</a></li>
                                 <li>
                                     {reviewArray.reviewArray.map((item, i) => {
                                         console.log(item.data);
-                                        if (item.data.name === "Great_Eastern") {
+                                        if (item.data.name === "Strangefellows_Pub") {
                                         return (<div key={i} className="UserReview">
                                                     <div className="boxes">
                                                         <div className="difficultyBox">
-                                                            <div>Difficulty</div>
-                                                            <div>{item.data.difficulty}/5</div>
+                                                            <div>Food</div>
+                                                            <div>{item.data.food}/5</div>
                                                         </div>
                                                         <div className="funBox">
-                                                            <div>Fun</div>
-                                                            <div>{item.data.fun}/5</div>
+                                                            <div>Fair Prices</div>
+                                                            <div>{item.data.prices}/5</div>
                                                         </div>
                                                     </div>
                                                     <div>Tags: {item.data.tags}</div>
@@ -43,23 +37,23 @@ function Trails(reviewArray) {
                         </div>
                     </li>
                     <li>
-                        <h3>Chute</h3>
-                        <div className = "Chute">
+                        <h3>The Lookout Tavern</h3>
+                        <div className = "The_Lookout_Tavern">
                             <ul>
-                                <li><a href="/review/Chute" className="rateThis">Rate this trail!</a></li>
+                                <li><a href="/review/The_Lookout_Tavern" className="rateThis">Rate this trail!</a></li>
                                 <li>
                                     {reviewArray.reviewArray.map((item, i) => {
                                         console.log(item.data);
-                                        if (item.data.name === "Chute") {
+                                        if (item.data.name === "The_Lookout_Tavern") {
                                         return (<div key={i} className="UserReview">
                                                     <div className="boxes">
                                                         <div className="difficultyBox">
-                                                            <div>Difficulty</div>
-                                                            <div>{item.data.difficulty}/5</div>
+                                                            <div>Food</div>
+                                                            <div>{item.data.food}/5</div>
                                                         </div>
                                                         <div className="funBox">
-                                                            <div>Fun</div>
-                                                            <div>{item.data.fun}/5</div>
+                                                            <div>Fair Prices</div>
+                                                            <div>{item.data.prices}/5</div>
                                                         </div>
                                                     </div>
                                                     <div>Tags: {item.data.tags}</div>
@@ -79,26 +73,4 @@ function Trails(reviewArray) {
     );
 }
 
-// function showOrHide(trail, num) {
-//     console.log('calling function');
-//     console.log(btntxt[0])
-//     btntxt[0] = "Less Info"
-//     console.log(btntxt[0])
-    // let info = document.getElementsByClassName(trail);
-    // let btnText = document.getElementsByClassName("showHideButton")[0].outerText;
-    // console.log(btnText);
-    // btnText.innerHTML = "check";
-    // console.log(btnText);
-    // if (btnText == "Show Info") {
-    //     console.log('if');
-    //     // btnText = "Hide Info";
-    //     // btnText.setState("Hide Info");
-    //     // info.style.display = "block";
-    // } else {
-    //     console.log('else');
-    //     // btnText.setState("Show Info");
-    //     // info.style.display = "none";
-    // }
-// }
-
-export default Trails;
+export default Apres;

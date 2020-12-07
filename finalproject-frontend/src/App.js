@@ -4,22 +4,23 @@ import {Route, BrowserRouter as Router, Redirect } from 'react-router-dom';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
-//Styles 
+// Styles 
 import './App.css';
 // Pages
 import Login from './containers/Login';
 import CreateAccount from './containers/CreateAccount';
 import UserProfile from './containers/UserProfile';
 import Trails from './containers/Trails';
-import Attractions from './containers/Attractions';
+import Apres from './containers/Apres';
 import LeaveAReview from './containers/LeaveAReview';
 //Components
 import Header from './components/Header';
 
 
 function App() {
+  /* USESTATE */
   const [loggedIn, setLoggedIn] = useState(false); // bool to determine if logged in
-  const [loading, setLoading] = useState(true); // is page loading? (don't show info before its' loaded)
+  const [loading, setLoading] = useState(true); // is page loading? (don't show info before it's loaded)
   const [userInformation, setUserInformation] = useState({});
 
   const firebaseConfig = {
@@ -32,7 +33,7 @@ function App() {
     appId: "1:577053299904:web:ee5a3f9e1fac6d7a364925"
   };
 
-  // ensure app is initialized when it's ready
+  /* ENSURE APP IS INITIALIZED WHEN READY */
   useEffect(() => {
     // initializes firebase, but only if it hasn't been initialized before
     if (!firebase.apps.length) {
@@ -56,20 +57,11 @@ function App() {
     })
   }, []);
 
-  console.log(firebase);
-  useEffect(() => {
-
-  })
-
-  // function for logging in
+  /* FUNCTION IS RUN WHEN LOGGING IN */
   function LoginFunction(e) {
-    // This is what you'll run when you wanna log in
     e.preventDefault(); // stop the form from submitting as a normal html form
     const email = e.currentTarget.loginEmail.value;
     const password = e.currentTarget.loginPassword.value;
-
-    console.log({ email, password });
-
     firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
@@ -82,9 +74,9 @@ function App() {
       // setLoggedIn(false); // it already is by default
     });
   }
-  // function for logging out
+
+  /* FUNCTION IS RUN WHEN LOGGING OUT */
   function LogoutFunction() {
-    // Run this when you wanna log out
     firebase.auth().signOut().then(function() {
       setLoggedIn(false);
       setUserInformation({});
@@ -92,13 +84,12 @@ function App() {
       console.log("LOGOUT ERROR", error);
     });
   }
-  // function for creating an account
+
+  /* FUNCTION IS RUN WHEN CREATING AN ACCOUNT */
   function CreateAccountFunction(e) {
-    // Run this when you create an account
     e.preventDefault();
     const email = e.currentTarget.createEmail.value;
     const password = e.currentTarget.createPassword.value;
-
     firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
@@ -112,23 +103,18 @@ function App() {
   }
   console.log({ loggedIn });
 
+  /* DON'T LOAD PAGE UNTIL LOADING IS FINISHED */
   if(loading) return null;
 
+  /* STORE REVIEWS IN VARIABLE, PUSH THEM TO AN ARRAY */
   const db = firebase.firestore();
   const reviews = db.collection("reviews");
-
   const reviewArray = [];
-  console.log(".doc: ", reviews.doc("great_eastern"));
-
   reviews.get().then(function(querySnapshot) {
     querySnapshot.forEach(function(doc) {
-        // doc.data() is never undefined for query doc snapshots
-        // console.log(doc.id, " => ", doc.data());
         reviewArray.push({id:doc.id, data:doc.data()});
     });
 });
-
-console.log(reviewArray);
 
   return (
   <div className="App">
@@ -169,10 +155,10 @@ console.log(reviewArray);
       <Route exact path="/trails">
         <Trails reviewArray={reviewArray} />
       </Route>
-      <Route exact path="/attractions">
-        <Attractions />
+      <Route exact path="/apres_ski">
+        <Apres reviewArray={reviewArray} />
       </Route>
-      <Route exact path="/review/:trail">
+      <Route exact path="/review/:name">
         <LeaveAReview userInformation={userInformation}/>
       </Route>
     </Router>

@@ -8,7 +8,7 @@ function Header({ loggedIn, LogoutFunction, userInformation }) {
             </div>
             <nav>
                 <a href="/trails">Trails</a>
-                <a href="/attractions">Attractions</a>
+                <a href="/apres_ski">Apres Ski</a>
             </nav>
             <nav>
                 { loggedIn ? (
