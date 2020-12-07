@@ -163,7 +163,7 @@ console.log(reviewArray);
         ): (
           // otherwise go to UserProfile
           // pass userInformation as a prop to the UserProfile page
-          <UserProfile userInformation={userInformation} />
+          <UserProfile userInformation={userInformation} reviewArray={reviewArray}/>
         )}
       </Route>
       <Route exact path="/trails">

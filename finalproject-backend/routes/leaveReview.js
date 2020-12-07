@@ -18,7 +18,7 @@ const reviews = db.collection("reviews");
 router.get('/submit', (req, res) => {
     const queryParams = req.query; 
     console.log("req:", req);
-    const idFromTitle = queryParams.userEmail.toLowerCase();
+    const idFromTitle = queryParams.userEmail.toLowerCase() + "_" + queryParams.trail;
     reviews
     .doc(idFromTitle) 
     .set(queryParams) 

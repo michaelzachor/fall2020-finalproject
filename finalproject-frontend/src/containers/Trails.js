@@ -11,12 +11,15 @@ function Trails(reviewArray) {
                 <ul>
                     <li>
                         <h3>Great Eastern</h3>
-                        <div className = "GrEaInfo">
+                        {/* <div /> */}
+                        {/* <div className = "GrEaInfo"> */}
+                        <div className = "Great_Eastern">
                             <ul>
                                 <li><a href="/review/Great_Eastern" className="rateThis">Rate this trail!</a></li>
                                 <li>
                                     {reviewArray.reviewArray.map((item, i) => {
                                         console.log(item.data);
+                                        if (item.data.trail === "Great_Eastern") {
                                         return <div key={i} className="UserReview">
                                                     <div className="boxes">
                                                         <div className="difficultyBox">
@@ -28,18 +31,47 @@ function Trails(reviewArray) {
                                                             <div>{item.data.fun}/5</div>
                                                         </div>
                                                     </div>
-                                                    <div>Tags:{item.data.tags}</div>
+                                                    <div>Tags: {item.data.tags}</div>
+                                                    {/* <div>Tags: {Array.isArray(item.data.tags) ? item.data.tags : item.data.tags.map((tag, i) => <span key={i}>tag</span>)}</div> */}
+                                                    {/* <div>Tags: {item.data.tags.length === 1 ? item.data.tags : item.data.tags.join(", ")}</div> */}
                                                     <div>Watch out for: {item.data.watchout}</div>
                                                     <div>{item.data.review}</div>
                                                 </div>
-                                        
-                                    })}
+                                    }})}
                                 </li>
                             </ul>
                         </div>
                     </li>
                     <li>
                         <h3>Chute</h3>
+                        <div className = "Chute">
+                            <ul>
+                                <li><a href="/review/Chute" className="rateThis">Rate this trail!</a></li>
+                                <li>
+                                    {reviewArray.reviewArray.map((item, i) => {
+                                        console.log(item.data);
+                                        if (item.data.trail === "Chute") {
+                                        return <div key={i} className="UserReview">
+                                                    <div className="boxes">
+                                                        <div className="difficultyBox">
+                                                            <div>Difficulty</div>
+                                                            <div>{item.data.difficulty}/5</div>
+                                                        </div>
+                                                        <div className="funBox">
+                                                            <div>Fun</div>
+                                                            <div>{item.data.fun}/5</div>
+                                                        </div>
+                                                    </div>
+                                                    <div>Tags: {item.data.tags}</div>
+                                                    {/* <div>Tags: {Array.isArray(item.data.tags) ? item.data.tags : item.data.tags.map((tag, i) => <span key={i}>tag</span>)}</div> */}
+                                                    {/* <div>Tags: {item.data.tags.length === 1 ? item.data.tags : item.data.tags.join(", ")}</div> */}
+                                                    <div>Watch out for: {item.data.watchout}</div>
+                                                    <div>{item.data.review}</div>
+                                                </div>
+                                    }})}
+                                </li>
+                            </ul>
+                        </div>
                     </li>
                 </ul>
             </div>
