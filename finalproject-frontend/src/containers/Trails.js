@@ -1,9 +1,30 @@
-// import { useState } from 'react';
+import { useState, useMemo, useEffect } from 'react';
+import axios from 'axios';
 
 // let btntxt = ["More Info", "More Info", "More Info"];
 
 function Trails(reviewArray) {
-    console.log("array: ", reviewArray)
+    let trailsArray = [{name:"Great Eastern", code: "Great_Eastern", link: "/review/Great_Eastern", rating: "circle"}, {name: "Chute", code: "Chute", link: "/review/Chute", rating: "square"}];
+    console.log("array: ", reviewArray.reviewArray)
+    let rarray = reviewArray.reviewArray;
+    let myArray = [];
+    rarray.map((item, i) => {
+        console.log("please", item.data);
+        myArray.push(item);
+    })
+    console.log("myarray:", myArray);
+    // let item = reviewArray.reviewArray[0].data.name;
+    // console.log("item: ", item);
+    const trailsData = useMemo(() => {
+        let rarray = reviewArray.reviewArray;
+        let myArray = [];
+        rarray.map((item, i) => {
+            console.log("please", item.data);
+            myArray.push(item);
+        })
+        return myArray;
+      }, [reviewArray]);
+      console.log("reviewArray", reviewArray);
     return (
         <div>
             <h2>Trails</h2>
@@ -11,16 +32,16 @@ function Trails(reviewArray) {
                 <ul>
                     <li>
                         <h3>Great Eastern</h3>
-                        <div />
-                        {/* <div className = "GrEaInfo"> */}
+                        {/* <div /> */}
                         <div className = "Great_Eastern">
                             <ul>
                                 <li><a href="/review/Great_Eastern" className="rateThis">Rate this trail!</a></li>
                                 <li>
-                                    {reviewArray.reviewArray.map((item, i) => {
-                                        console.log(item.data);
+                                    {rarray.map((item, i) => {
+                                        console.log("data: ", item.data);
                                         if (item.data.name === "Great_Eastern") {
-                                        return (<div key={i} className="UserReview">
+                                        return (
+                                        <div key={i} className="UserReview">
                                                     <div className="boxes">
                                                         <div className="difficultyBox">
                                                             <div>Difficulty</div>
@@ -48,7 +69,7 @@ function Trails(reviewArray) {
                             <ul>
                                 <li><a href="/review/Chute" className="rateThis">Rate this trail!</a></li>
                                 <li>
-                                    {reviewArray.reviewArray.map((item, i) => {
+                                    {rarray.map((item, i) => {
                                         console.log(item.data);
                                         if (item.data.name === "Chute") {
                                         return (<div key={i} className="UserReview">

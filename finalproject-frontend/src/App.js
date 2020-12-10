@@ -1,5 +1,4 @@
-import './App.css';
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useMemo} from 'react';
 import {Route, BrowserRouter as Router, Redirect } from 'react-router-dom';
 import firebase from 'firebase/app';
 import 'firebase/auth';
@@ -104,6 +103,7 @@ function App() {
   console.log({ loggedIn });
 
   /* DON'T LOAD PAGE UNTIL LOADING IS FINISHED */
+  // move to right before return
   if(loading) return null;
 
   /* STORE REVIEWS IN VARIABLE, PUSH THEM TO AN ARRAY */
@@ -116,48 +116,73 @@ function App() {
     });
 });
 
+// maybe goes in backend
+  // const reviewArray = useMemo(() => {
+  //   const reviewArray = [];
+  //   if (firebase.apps.length) {
+  //     const db = firebase.firestore();
+  //     const reviews = db.collection("reviews");
+  //     reviews.get().then(function (querySnapshot) {
+  //       querySnapshot.forEach(function (doc) {
+  //         reviewArray.push({ id: doc.id, data: doc.data() });
+  //       });
+  //     });
+  //   }
+  //   return reviewArray;
+  // }, [firebase]);
+
+  
+
   return (
   <div className="App">
     <Header loggedIn={loggedIn} LogoutFunction={LogoutFunction} userInformation={userInformation}/>
     <div className="NonHeader">
     <Router>
+
+      {/* LOGIN */}
       <Route exact path="/login">
         {!loggedIn ? (
-          // if user is not logged in
-          // go to Login
+          // if user is not logged in go to Login
           <Login LoginFunction={LoginFunction} />
         )  : (
           // otherwise go to UserProfile
           <Redirect to="/"/>
         )}
       </Route>
+
+      {/* CREATE ACCOUNT */}
       <Route exact path="/create-account">
         {!loggedIn ? (
-          // if user is not logged in
-          // go to CreateAccount
+          // if user is not logged in go to CreateAccount
           <CreateAccount CreateAccountFunction={CreateAccountFunction}/>
         ) : (
           // otherwise go to UserProfile
           <Redirect to="/"/>
         )}
       </Route>
+
+      {/* USER PROFILE */}
       <Route exact path="/">
         {!loggedIn ? (
-          // if user is not logged in
-          // go to login
+          // if user is not logged in go to login
           <Redirect to="/login" />
         ): (
           // otherwise go to UserProfile
-          // pass userInformation as a prop to the UserProfile page
           <UserProfile userInformation={userInformation} reviewArray={reviewArray}/>
         )}
       </Route>
+
+      {/* TRAILS */}
       <Route exact path="/trails">
         <Trails reviewArray={reviewArray} />
       </Route>
+      
+      {/* APRES SKI */}
       <Route exact path="/apres_ski">
         <Apres reviewArray={reviewArray} />
       </Route>
+
+      {/* REVIEWS */}
       <Route exact path="/review/:name">
         <LeaveAReview userInformation={userInformation}/>
       </Route>

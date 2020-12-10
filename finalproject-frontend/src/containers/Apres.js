@@ -6,7 +6,7 @@ function Apres(reviewArray) {
                 <ul>
                     <li>
                         <h3>Strangefellows Pub</h3>
-                        {/* <div /> */}
+                        <div />
                         <div className = "Strangefellows_Pub">
                             <ul>
                                 <li><a href="/review/Strangefellows_Pub" className="rateThis">Rate this trail!</a></li>
