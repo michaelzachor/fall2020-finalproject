@@ -1,72 +1,66 @@
-function Apres(reviewArray) {
+import { useState, useMemo, useEffect } from 'react';
+import axios from 'axios';
+
+function Apres() {
+    let apresArray = [{name:"Strangefellows Pub", code: "Strangefellows_Pub", link: "/review/Strangefellows_Pub", level: "bar"}, {name: "The Lookout Tavern", code: "The_Lookout_Tavern", link: "/review/The_Lookout_Tavern", level: "restaurant"}];
+    const [theArray, settheArray] = useState([]);
+      useEffect(() => {
+        axios
+        .get(
+            `https://whispering-bastion-69731.herokuapp.com/all-reviews`
+            )
+        .then(function (response) {
+          if (response.data) {
+            settheArray(response.data);
+          }
+        })
+        .catch(function (error) {
+            console.warn(error);
+        })
+    }, []);
+
     return (
         <div>
-            <h2>Trails</h2>
+            <h2>Apres Ski</h2>
             <div>
                 <ul>
-                    <li>
-                        <h3>Strangefellows Pub</h3>
-                        <div />
-                        <div className = "Strangefellows_Pub">
-                            <ul>
-                                <li><a href="/review/Strangefellows_Pub" className="rateThis">Rate this trail!</a></li>
-                                <li>
-                                    {reviewArray.reviewArray.map((item, i) => {
-                                        console.log(item.data);
-                                        if (item.data.name === "Strangefellows_Pub") {
-                                        return (<div key={i} className="UserReview">
-                                                    <div className="boxes">
-                                                        <div className="difficultyBox">
-                                                            <div>Food</div>
-                                                            <div>{item.data.food}/5</div>
+                    {apresArray.map((trail, j) => {
+                        console.log("place: ", trail.name);
+                        return (
+                        <li key={j}>
+                            <h3>{trail.name}</h3>
+                            <div classname={trail.code}>
+                                <ul>
+                                    <li><a href={trail.link}>Rate this trail!</a></li>
+                                    <li>
+                                    {theArray.map((item, i) => {
+                                        console.log({i}, item.name);
+                                        if (item.name === trail.code) {
+                                            return (
+                                            <div key={i} className="UserReview">
+                                                        <div className="boxes">
+                                                            <div className="difficultyBox">
+                                                                <div>Difficulty</div>
+                                                                <div>{item.food}/5</div>
+                                                            </div>
+                                                            <div className="funBox">
+                                                                <div>Fun</div>
+                                                                <div>{item.prices}/5</div>
+                                                            </div>
                                                         </div>
-                                                        <div className="funBox">
-                                                            <div>Fair Prices</div>
-                                                            <div>{item.data.prices}/5</div>
-                                                        </div>
-                                                    </div>
-                                                    <div>Tags: {item.data.tags}</div>
-                                                    {/* <div>Tags: {Array.isArray(item.data.tags) ? item.data.tags : item.data.tags.map((tag, i) => <span key={i}>tag</span>)}</div> */}
-                                                    {/* <div>Tags: {item.data.tags.length === 1 ? item.data.tags : item.data.tags.join(", ")}</div> */}
-                                                    <div>Watch out for: {item.data.watchout}</div>
-                                                    <div>{item.data.review}</div>
-                                                </div>
-                                    )}})}
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                    <li>
-                        <h3>The Lookout Tavern</h3>
-                        <div className = "The_Lookout_Tavern">
-                            <ul>
-                                <li><a href="/review/The_Lookout_Tavern" className="rateThis">Rate this trail!</a></li>
-                                <li>
-                                    {reviewArray.reviewArray.map((item, i) => {
-                                        console.log(item.data);
-                                        if (item.data.name === "The_Lookout_Tavern") {
-                                        return (<div key={i} className="UserReview">
-                                                    <div className="boxes">
-                                                        <div className="difficultyBox">
-                                                            <div>Food</div>
-                                                            <div>{item.data.food}/5</div>
-                                                        </div>
-                                                        <div className="funBox">
-                                                            <div>Fair Prices</div>
-                                                            <div>{item.data.prices}/5</div>
-                                                        </div>
-                                                    </div>
-                                                    <div>Tags: {item.data.tags}</div>
-                                                    {/* <div>Tags: {Array.isArray(item.data.tags) ? item.data.tags : item.data.tags.map((tag, i) => <span key={i}>tag</span>)}</div> */}
-                                                    {/* <div>Tags: {item.data.tags.length === 1 ? item.data.tags : item.data.tags.join(", ")}</div> */}
-                                                    <div>Watch out for: {item.data.watchout}</div>
-                                                    <div>{item.data.review}</div>
-                                                </div>
-                                    )}})}
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
+                                                        <div>Tags: {item.tags}</div>
+                                                        {/* <div>Tags: {Array.isArray(item.data.tags) ? item.data.tags : item.data.tags.map((tag, i) => <span key={i}>tag</span>)}</div> */}
+                                                        {/* <div>Tags: {item.data.tags.length === 1 ? item.data.tags : item.data.tags.join(", ")}</div> */}
+                                                        <div>Watch out for: {item.watchout}</div>
+                                                        <div>{item.review}</div>
+                                                    </div> 
+                                        )}})}
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    )})}
+                    
                 </ul>
             </div>
         </div>

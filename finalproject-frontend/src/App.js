@@ -21,6 +21,22 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false); // bool to determine if logged in
   const [loading, setLoading] = useState(true); // is page loading? (don't show info before it's loaded)
   const [userInformation, setUserInformation] = useState({});
+  const [reviewInfo, setReviewInfo] = useState([]);
+
+//   useEffect(() => {
+//     axios
+//     .get(
+//         `https://whispering-bastion-69731.herokuapp.com/all-reviews`
+//         )
+//     .then(function (response) {
+//       if (response.data) {
+//         setReviewInfo(response.data);
+//       }
+//     })
+//     .catch(function (error) {
+//         console.warn(error);
+//     })
+// }, []);
 
   const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API,

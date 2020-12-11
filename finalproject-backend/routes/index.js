@@ -5,48 +5,67 @@ const router = express.Router();
 const firebase = require("firebase");
 // Initialize Firestore Database
 const db = firebase.firestore();
+const reviews = db.collection('reviews');
 
 const sampleJSON =[{
         name: 'Great Eastern',
         type: 'Trail',
-        level: 'circle',
+        subtype: 'circle',
         // reviews: [user1Review, user2Review, user3Review]
     },
     {
         name: 'Chute',
         type: 'Trail',
-        level: 'square',
+        subtype: 'square',
         // reviews: [user1Review, user2Review, user3Review]
     },
     {
         name: 'Cascade',
         type: 'Trail',
-        level: 'diamond',
+        subtype: 'diamond',
         // reviews: [user1Review, user2Review]
     },
     {
         name: 'Pickel Barrel',
-        type: 'Attraction',
-        style: 'Nightclub',
+        type: 'ApresSki',
+        subtype: 'Nightclub',
         town: 'Killington',
         // reviews: [user1Review, user2Review]
     },
     {
         name: 'Strangefellows Pub',
-        type: 'Attraction',
-        style: 'Bar',
+        type: 'ApresSki',
+        subtype: 'Bar',
         town: 'Rutland',
         // reviews: [user1Review, user3Review]
     },
     {
         name: 'Tokyo House',
-        type: 'Attraction',
-        style: 'Restaurant',
+        type: 'ApresSki',
+        subtype: 'Restaurant',
         town: 'Rutland',
         // reviews: [user1Review, user2Review, user3Review]
     }
 ];
 
 router.get('/', (req, res) => res.send(sampleJSON));
+
+router.get("/all-reviews", (req, res) => {
+    const arrayOfReviews = [];
+
+    reviews
+    .get()
+    .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+            arrayOfReviews.push(doc.data());
+        });
+        return res.send(arrayOfReviews);
+    })
+    .catch(function (error) {
+        console.warn("Error:", error);
+        return res.send(arrayOfReviews);
+    })
+    // res.send(sampleJSON)
+});
 
 module.exports = router;

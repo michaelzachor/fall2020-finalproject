@@ -19,16 +19,16 @@ firebase.initializeApp(firebaseConfig);
 
 // Routes Import
 const indexRoute = require('./routes/index.js');
-const leaveReviewRoute = require('./routes/leavereview.js');
+const leaveReviewRoute = require('./routes/leaveReview.js');
 
 app.use(function (req, res, next) {
-    res.header("Access-Control-Allow-Origin", "*"); // update to match the domain you will make the request from
+    res.header("Access-Control-Allow-Origin", "*");
     res.header(
       "Access-Control-Allow-Headers",
       "Origin, X-Requested-With, Content-Type, Accept"
     );
     next();
-  });
+});
   
 // Routes
 app.use('/', indexRoute);
