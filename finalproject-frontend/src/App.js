@@ -200,7 +200,11 @@ function App() {
 
       {/* REVIEWS */}
       <Route exact path="/review/:name">
-        <LeaveAReview userInformation={userInformation}/>
+        {!loggedIn ? (
+          <Redirect to="/login" />
+        ): (
+          <LeaveAReview userInformation={userInformation}/>
+        )}
       </Route>
     </Router>
     </div>

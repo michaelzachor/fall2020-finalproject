@@ -65,7 +65,6 @@ router.get("/all-reviews", (req, res) => {
         console.warn("Error:", error);
         return res.send(arrayOfReviews);
     })
-    // res.send(sampleJSON)
 });
 
 module.exports = router;

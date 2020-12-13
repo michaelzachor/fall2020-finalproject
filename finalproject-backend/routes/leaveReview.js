@@ -10,11 +10,6 @@ const db = firebase.firestore();
 // 3. Reference a specific collection
 const reviews = db.collection("reviews");
 
-// router.get('/', function(req, res) {
-//     res.render('/review');
-//  });
-// router.get('/', (req, res) => res.send());
-
 router.get('/submit', (req, res) => {
     const queryParams = req.query; 
     console.log("req:", req);

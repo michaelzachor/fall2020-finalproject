@@ -22,15 +22,7 @@ function UserProfileComponent({userInformation}) {
     }, []);
     return <div>
             <div><h3>Email:</h3>{userInformation.email}</div>
-            {/* <div /> */}
             <h3>Reviews:</h3>
-            {/* {reviewArray.map((item, i) => {
-                if (item.data.userEmail === userInformation.email) {
-                    return <div key={i}>
-                        <div><strong>{item.data.name}:</strong> {item.data.review}</div>
-                    </div>
-                }
-            })} */}
             {theArray.map((item, i) => {
                 console.log(item.data);
                 if (item.userEmail === userInformation.email) {

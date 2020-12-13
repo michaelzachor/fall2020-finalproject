@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import axios from 'axios';
+import ShowReviews from '../components/ShowReviews';
 
 function Apres() {
     let apresArray = [{name:"Strangefellows Pub", code: "Strangefellows_Pub", link: "/review/Strangefellows_Pub", level: "bar"}, {name: "The Lookout Tavern", code: "The_Lookout_Tavern", link: "/review/The_Lookout_Tavern", level: "restaurant"}];
@@ -34,27 +35,14 @@ function Apres() {
                                     <li><a href={trail.link}>Rate this trail!</a></li>
                                     <li>
                                     {theArray.map((item, i) => {
-                                        console.log({i}, item.name);
+                                        console.log("in apres", item)
                                         if (item.name === trail.code) {
                                             return (
-                                            <div key={i} className="UserReview">
-                                                        <div className="boxes">
-                                                            <div className="difficultyBox">
-                                                                <div>Difficulty</div>
-                                                                <div>{item.food}/5</div>
-                                                            </div>
-                                                            <div className="funBox">
-                                                                <div>Fun</div>
-                                                                <div>{item.prices}/5</div>
-                                                            </div>
-                                                        </div>
-                                                        <div>Tags: {item.tags}</div>
-                                                        {/* <div>Tags: {Array.isArray(item.data.tags) ? item.data.tags : item.data.tags.map((tag, i) => <span key={i}>tag</span>)}</div> */}
-                                                        {/* <div>Tags: {item.data.tags.length === 1 ? item.data.tags : item.data.tags.join(", ")}</div> */}
-                                                        <div>Watch out for: {item.watchout}</div>
-                                                        <div>{item.review}</div>
-                                                    </div> 
-                                        )}})}
+                                            <div key={i}>
+                                                <ShowReviews item={item} isTrail={false} />
+                                            </div>
+                                        )}
+                                    })}
                                     </li>
                                 </ul>
                             </div>
