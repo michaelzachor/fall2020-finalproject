@@ -1,6 +1,8 @@
 import { useState, useMemo, useEffect } from 'react';
 import axios from 'axios';
 import ShowReviews from '../components/ShowReviews';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faUtensils, faGlassCheers} from '@fortawesome/free-solid-svg-icons';
 
 function Apres() {
     let apresArray = [{name:"Strangefellows Pub", code: "Strangefellows_Pub", link: "/review/Strangefellows_Pub", level: "bar"}, {name: "The Lookout Tavern", code: "The_Lookout_Tavern", link: "/review/The_Lookout_Tavern", level: "restaurant"}];
@@ -29,16 +31,19 @@ function Apres() {
                         console.log("place: ", trail.name);
                         return (
                         <li key={j}>
-                            <h3>{trail.name}</h3>
+                            <h3 className="placeName">{trail.name}</h3>
+                            {trail.level === "bar" ? <FontAwesomeIcon className="icons" icon={faGlassCheers} />
+                                                   : <FontAwesomeIcon className="icons" icon={faUtensils} />}
                             <div classname={trail.code}>
                                 <ul>
-                                    <li><a href={trail.link}>Rate this trail!</a></li>
+                                    <li className="rate"><a href={trail.link}>Rate it!</a></li>
                                     <li>
                                     {theArray.map((item, i) => {
                                         console.log("in apres", item)
                                         if (item.name === trail.code) {
                                             return (
                                             <div key={i}>
+                                                <div className="reviewName">{item.userEmail}: </div>
                                                 <ShowReviews item={item} isTrail={false} />
                                             </div>
                                         )}

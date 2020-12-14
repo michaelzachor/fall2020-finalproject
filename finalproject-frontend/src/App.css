@@ -1,11 +1,171 @@
+.App {
+  font-size: 18px;
+}
+
+/* HEADER */
+.Header {
+  /* align-items: center; */
+  background-color: black;
+  color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 0;
+  max-width: 2000px;
+}
+
+.Header nav a {
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px;
+  text-decoration: none;
+  text-align: center;
+  
+}
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+}
+
+.navAccount {
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: row;
+}
+
+.navPages {
+  align-items: center;
+  justify-content: flex-end;
+  display: flex;
+  flex-direction: row;
+}
+
+.account, .login {
+  border: solid white 2px;
+  color: white;
+  padding: 5px;
+  width: 150px;
+}
+.account:hover, .login:hover, .trails:hover, .apres:hover {
+  color: black;
+  background-color: white;
+}
+.logout, .signup {
+  border: solid red 2px;
+  color: red;
+  padding: 5px;
+  width: 150px;
+}
+.logout:hover, .signup:hover {
+  color: white;
+  background-color: red;
+}
+.trails, .apres {
+  border: solid white 2px;
+  color: white;
+  padding: 5px;
+}
+
+/* EVERYTHING ELSE */
+
 .NonHeader {
   max-width: 1040px;
   margin: 0 auto;
   padding: 0 25px;
 }
 
-.App {
-  font-size: 18px;
+h1 {
+  margin: auto;
+  padding: 30px 25px;
+}
+
+h2 {
+  font-size: 48px;
+}
+
+h3 {
+  font-size: 36px;
+}
+
+li {
+  list-style-type: none;
+}
+
+/* THE REVIEWS */
+
+.placeName {
+  display: inline-block;
+}
+.icons {
+  font-size: 30px;
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.circle {
+  height: 30px;
+  width: 30px;
+  background-color: rgb(1, 180, 1);
+  border-radius: 50%;
+  display: inline-block;
+  margin-left: 10px;
+}
+.square {
+  height: 30px;
+  width: 30px;
+  background-color: rgb(4, 58, 235);
+  display: inline-block;
+  margin-left: 10px;
+}
+.diamond {
+  width: 0;
+  height: 0;
+  border: 50px solid transparent;
+  border-bottom: 70px solid black;
+  position: relative;
+  top: -50px;
+}
+.diamond:after {
+  content: '';
+  position: absolute;
+  left: -50px;
+  top: 70px;
+  width: 0;
+  height: 0;
+  border: 50px solid transparent;
+  border-top: 70px solid black;
+}
+
+.rate a {
+  border: solid blue 2px;
+  text-decoration: none;
+  color: blue;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
+}
+.rate a:hover {
+  background-color: blue;
+  color: white;
+}
+
+.reviewName {
+  font-weight: bold;
+  font-size: 24px;
+  margin-top: 20px;
+  border-top: solid black 5px;
+}
+
+.UserReview {
+  background-color: rgb(162, 176, 255);
+  margin: 10px 0px;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .boxes {
@@ -33,76 +193,37 @@
   text-align: center;
 }
 
-.Header {
-  align-items: center;
-  background-color: black;
-  color: white;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin: 0;
-  max-width: 2000px;
+.review {
+  font-style: italic;
 }
 
-.Header nav {
-  /* display: flex;
-  justify-content: flex-end; */
-  
-}
-
-.Header nav a {
-  color: white;
-  cursor: pointer;
-  font-size: 20px;
-  font-weight: bold;
-  margin: 10px;
-  text-decoration: none;
-
-  /* color: black;
-  cursor: pointer;
-  display: block;
-  font-size: 20px;
-  font-weight: bold;
-  margin: 10px;
-  text-decoration: underline; */
-}
-
-.Header nav a:hover {
-  color: grey;
-}
-
-h2 {
-  font-size: 48px;
-}
-
-h3 {
-  font-size: 36px;
-}
-
-li {
-  list-style-type: none;
-}
-
-.rateThis {
-  color: black;
-  text-decoration: none;
-}
-
-.rateThis:hover {
-  color: grey;
-}
+/* LOGIN/SIGNUP */
 
 .SignupForm {
   display: flex;
   flex-direction: column;
+  margin: auto 100px;
+  font-weight: bold;
 }
 
 .SignupForm input {
   margin: 10px 0;
 }
 
-.UserReview {
-  background-color: lightcyan;
-  margin: 10px 0px;
-  padding: 10px;
+button {
+  background-color: white;
+  border: solid blue 2px;
+  text-decoration: none;
+  color: blue;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bold;
+  text-decoration: none;
+  text-align: center;
 }
+button:hover {
+  background-color: blue;
+  color: white;
+}
+

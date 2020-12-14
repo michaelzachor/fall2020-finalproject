@@ -1,5 +1,6 @@
 import { useState, useMemo, useEffect } from 'react';
 import axios from 'axios';
+import ShowReviews from './ShowReviews'
 
 // take in userInformation from UserProfile.js
 // display userInformation
@@ -20,33 +21,25 @@ function UserProfileComponent({userInformation}) {
             console.warn(error);
         })
     }, []);
-    return <div>
+    return <ul>
+        <li>
             <div><h3>Email:</h3>{userInformation.email}</div>
+        </li>
+        <li>
             <h3>Reviews:</h3>
+            <ul>
             {theArray.map((item, i) => {
-                console.log(item.data);
+                console.log("item", item);
                 if (item.userEmail === userInformation.email) {
-                return (
-                <div key={i} className="UserReview">
-                    <h4>{item.name}</h4>
-                    <div className="boxes">
-                        <div className="difficultyBox">
-                            <div>Difficulty</div>
-                            <div>{item.difficulty}/5</div>
-                        </div>
-                        <div className="funBox">
-                            <div>Fun</div>
-                            <div>{item.fun}/5</div>
-                        </div>
-                    </div>
-                    <div>Tags: {item.tags}</div>
-                    {/* <div>Tags: {Array.isArray(item.data.tags) ? item.data.tags : item.data.tags.map((tag, i) => <span key={i}>tag</span>)}</div> */}
-                    {/* <div>Tags: {item.data.tags.length === 1 ? item.data.tags : item.data.tags.join(", ")}</div> */}
-                    <div>Watch out for: {item.watchout}</div>
-                    <div>{item.review}</div>
-                </div>
+                    return (
+                        <li key={i}>
+                            <div className="reviewName">{item.name.replace(/_/g, " ")}</div>
+                            {item.type === "trail" ? <ShowReviews item={item} isTrail={true} /> : <ShowReviews item={item} isTrail={false} />}
+                        </li>
             )}})}
-    </div>
+            </ul>
+        </li>
+    </ul>
 }
 
 export default UserProfileComponent;

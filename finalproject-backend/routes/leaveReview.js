@@ -3,11 +3,8 @@ const express = require('express');
 const router = express.Router();
 
 // SET UP FIREBASE ON THIS PAGE
-// 1. Require Firebase
 const firebase = require("firebase");
-// 2. Initialize Firestore Database
 const db = firebase.firestore();
-// 3. Reference a specific collection
 const reviews = db.collection("reviews");
 
 router.get('/submit', (req, res) => {

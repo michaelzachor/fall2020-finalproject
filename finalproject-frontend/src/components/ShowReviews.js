@@ -17,11 +17,17 @@ function ShowReviews({item, isTrail}) {
                 <div>{isTrail ? item.fun : item.prices}/5</div>
             </div>
         </div>
-        <div>Tags: {item.tags}</div>
-        {/* <div>Tags: {Array.isArray(item.data.tags) ? item.data.tags : item.data.tags.map((tag, i) => <span key={i}>tag</span>)}</div> */}
-        {/* <div>Tags: {item.data.tags.length === 1 ? item.data.tags : item.data.tags.join(", ")}</div> */}
-        <div>Watch out for: {item.watchout}</div>
-        <div>{item.review}</div>
+        <div>Tags: 
+            {item.tags.map((tag, t) => {
+            if (t > 1 && t < item.tags.length-1) return <span key={t}> {tag},</span>
+            else if (t == item.tags.length-1) return <span key={t}> {tag}</span>})}
+        </div>
+        <div>Watch out for: 
+            {item.watchout.map((watchoutFor, w) => {
+            if (w > 1 && w < item.watchout.length-1) return <span key={w}> {watchoutFor},</span>
+            else if (w == item.watchout.length-1) return <span key={w}> {watchoutFor}</span>})}
+        </div>
+        <div className="review">"{item.review}"</div>
     </div>
 )}
 

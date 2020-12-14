@@ -1,13 +1,17 @@
+import Axios from 'axios';
 import React from 'react';
 import {useParams} from 'react-router-dom';
 function LeaveAReview({userInformation}) {
     let {name} = useParams(); // name == "Great_Eastern"
+    
     let trailForm = ["difficulty", "fun", 
     "views", "good views", "space", "lots of space", "food", "close to food", "tree", "tree trail", 
     "moguls", "ice", "beginners", "snowboarders", "trail"];
+    
     let apresForm = ["food", "prices", 
     "music", "live music", "crowded", "crowded", "casual", "casual", "happyhour", "happy hour",
     "families", "wait", "cash", "overpriced", "apresSki"];
+    
     let theForm = [];
     if (name === "Great_Eastern" || name === "Chute") {
         theForm = trailForm;
@@ -17,6 +21,9 @@ function LeaveAReview({userInformation}) {
     console.log("name: " + name);
     console.log("[0]:", theForm[0]);
     console.log(userInformation);
+
+    // Axios.get(`http://localhost:4000/review`)
+
     return (
         <div>
             <h2>{name.split('_').join(' ')} rating</h2>
@@ -49,6 +56,8 @@ function LeaveAReview({userInformation}) {
                 </div>
                 <h4>Tags</h4>
                 <div>
+                    <input type="hidden" name="tags" value="placeholder1" />
+                    <input type="hidden" name="tags" value="placeholder2" />
                     <input type="checkbox" name="tags" value={theForm[2]} />
                     <label htmlFor={theForm[2]}>{theForm[3]}</label>
                     <input type="checkbox" name="tags" value={theForm[4]} />
@@ -60,6 +69,8 @@ function LeaveAReview({userInformation}) {
                 </div>
                 <h4>Watch out for</h4>
                 <div>
+                    <input type="hidden" name="watchout" value="placeholder1" />
+                    <input type="hidden" name="watchout" value="placeholder2" />
                     <input type="checkbox" name="watchout" value={theForm[10]} />
                     <label htmlFor={theForm[10]}>{theForm[10]}</label>
                     <input type="checkbox" name="watchout" value={theForm[11]} />

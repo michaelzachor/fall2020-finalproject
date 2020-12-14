@@ -29,17 +29,19 @@ function Trails() {
                         console.log("trail: ", trail.name);
                         return (
                         <li key={j}>
-                            <h3>{trail.name}</h3>
-                            <div classname={trail.code}>
+                            <div className="placeTitle">
+                                <h3 className="placeName">{trail.name}</h3>
+                                <div className={trail.level}></div>
+                            </div>
+                            <div className={trail.code}>
                                 <ul>
-                                    <li><a href={trail.link}>Rate this trail!</a></li>
+                                    <li className="rate"><a href={trail.link}>Rate it!</a></li>
                                     <li>
                                     {theArray.map((item, i) => {
-                                        // console.log({i}, item.name);
                                         if (item.name === trail.code) {
-                                            console.log("in trails", item)
                                             return (
                                             <div key={i}>
+                                                <div className="reviewName">{item.userEmail}: </div>
                                                 <ShowReviews item={item} isTrail={true} />
                                             </div>
                                         )}
