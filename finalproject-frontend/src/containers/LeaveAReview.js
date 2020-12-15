@@ -1,26 +1,27 @@
 import React from 'react';
 import {useParams} from 'react-router-dom';
-function LeaveAReview({userInformation}) {
+function LeaveAReview({userInformation, trailsArray}) {
     let {name} = useParams(); // name == "Great_Eastern"
     
     let trailForm = ["difficulty", "fun", 
     "views", "good views", "space", "lots of space", "food", "close to food", "tree", "tree trail", 
-    "moguls", "ice", "beginners", "snowboarders", "trail"];
+    "moguls", "ice", "ice", "beginners", "beginners", "snowboarders", "trail"];
     
     let apresForm = ["food", "prices", 
     "music", "live music", "crowded", "crowded", "casual", "casual", "happyhour", "happy hour",
-    "families", "wait", "cash", "overpriced", "apresSki"];
+    "families", "wait", "long wait", "cash", "cash only", "overpriced", "apresSki"];
     
-    let theForm = [];
-    if (name === "Great_Eastern" || name === "Chute") {
-        theForm = trailForm;
-    } else {
-        theForm = apresForm;
+    let theForm = apresForm;
+    for (let index in trailsArray) {
+        if (name === trailsArray[index].code) {
+            theForm = trailForm;
+            break;
+        }
     }
 
     return (
         <div>
-            <h2>{name.split('_').join(' ')} rating</h2>
+            <h2>Rate {name.split('_').join(' ')}!</h2>
             <form action="https://whispering-bastion-69731.herokuapp.com//review/submit">
                 <h4>{theForm[0]}</h4>
                 <div>
@@ -48,7 +49,7 @@ function LeaveAReview({userInformation}) {
                     <input type="radio" name={theForm[1]} value="5" />
                     <label htmlFor="5">5</label>
                 </div>
-                <h4>Tags</h4>
+                <h4>tags</h4>
                 <div>
                     <input type="hidden" name="tags" value="placeholder1" />
                     <input type="hidden" name="tags" value="placeholder2" />
@@ -61,18 +62,18 @@ function LeaveAReview({userInformation}) {
                     <input type="checkbox" name="tags" value={theForm[8]} />
                     <label htmlFor={theForm[8]}>{theForm[9]}</label>
                 </div>
-                <h4>Watch out for</h4>
+                <h4>watch out for</h4>
                 <div>
                     <input type="hidden" name="watchout" value="placeholder1" />
                     <input type="hidden" name="watchout" value="placeholder2" />
                     <input type="checkbox" name="watchout" value={theForm[10]} />
                     <label htmlFor={theForm[10]}>{theForm[10]}</label>
                     <input type="checkbox" name="watchout" value={theForm[11]} />
-                    <label htmlFor={theForm[11]}>{theForm[11]}</label>
-                    <input type="checkbox" name="watchout" value={theForm[12]} />
-                    <label htmlFor={theForm[12]}>{theForm[12]}</label>
+                    <label htmlFor={theForm[11]}>{theForm[12]}</label>
                     <input type="checkbox" name="watchout" value={theForm[13]} />
-                    <label htmlFor={theForm[13]}>{theForm[13]}</label>
+                    <label htmlFor={theForm[13]}>{theForm[14]}</label>
+                    <input type="checkbox" name="watchout" value={theForm[15]} />
+                    <label htmlFor={theForm[15]}>{theForm[15]}</label>
                 </div>
                 <h4>Overall Review</h4>
                 <div>

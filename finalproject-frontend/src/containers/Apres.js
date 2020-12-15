@@ -40,7 +40,7 @@ function Apres() {
                             <h3 className="placeName">{trail.name}</h3>
                             {trail.level === "bar" ? <FontAwesomeIcon className="icons" icon={faGlassCheers} />
                                                    : <FontAwesomeIcon className="icons" icon={faUtensils} />}
-                            <div classname={trail.code}>
+                            <div className={trail.code}>
                                 <ul>
                                     <li className="rate"><a href={trail.link}>Rate it!</a></li>
                                     <li>

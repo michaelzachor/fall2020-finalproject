@@ -97,6 +97,15 @@ function App() {
     })
   }
 
+  let trailsArray = [
+    {name: "Great Eastern", code: "Great_Eastern", link: "/review/Great_Eastern", level: "circle"},
+    {name: "Bear Cub", code: "Bear_Cub", link: "/review/Bear_Cub", level: "circle"}, 
+    {name: "Chute", code: "Chute", link: "/review/Chute", level: "square"},
+    {name: "Bear Claw", code: "Bear_Claw", link: "/review/Bear_Claw", level: "square"},
+    {name: "Breakaway", code: "Breakaway", link: "/review/Breakaway", level: "diamond"},
+    {name: "Wildfire", code: "Wildfire", link: "/review/Wildfire", level: "diamond"}
+];
+
 /* DON'T LOAD PAGE UNTIL LOADING IS FINISHED */
   if(loading) return null;
 
@@ -141,7 +150,7 @@ function App() {
 
       {/* TRAILS */}
       <Route exact path="/trails">
-        <Trails />
+        <Trails trailsArray={trailsArray}/>
       </Route>
       
       {/* APRES SKI */}
@@ -154,7 +163,7 @@ function App() {
         {!loggedIn ? (
           <Redirect to="/login" />
         ): (
-          <LeaveAReview userInformation={userInformation}/>
+          <LeaveAReview userInformation={userInformation} trailsArray={trailsArray}/>
         )}
       </Route>
     </Router>

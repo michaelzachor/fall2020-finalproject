@@ -12,7 +12,7 @@
   justify-content: space-between;
   margin: 0;
   max-width: 2000px;
-  min-width: 400px;
+  min-width: 300px;
 }
 
 .Header nav a {
@@ -263,5 +263,52 @@ button:hover {
   }
   h1 {
     font-size: 30px;
+  }
+
+  .placeName {
+    display: block;
+    margin-bottom: 0px;
+  }
+  .icons {
+    font-size: 30px;
+    display: block;
+    margin: 0 10px 10px 0;
+  }
+
+  .circle {
+    height: 30px;
+    width: 30px;
+    background-color: rgb(1, 180, 1);
+    border-radius: 50%;
+    display: inline-block;
+    margin: 0 10px 10px 0;
+  }
+  .square {
+    height: 30px;
+    width: 30px;
+    background-color: rgb(4, 58, 235);
+    display: inline-block;
+    margin: 0 10px 10px 0;
+  }
+  .diamond {
+    width: 0;
+    height: 0;
+    display: inline-block;
+    border: 18px solid transparent;
+    border-bottom: 24px solid black;
+    margin: 0 10px 10px 0;
+    position: relative;
+    top: -18px;
+  }
+  .diamond:after {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    left: -18px;
+    top: 24px;
+    width: 0;
+    height: 0;
+    border: 18px solid transparent;
+    border-top: 24px solid black;
   }
 }
