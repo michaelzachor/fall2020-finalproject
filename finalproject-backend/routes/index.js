@@ -5,8 +5,6 @@ const firebase = require("firebase");
 const db = firebase.firestore();
 const reviews = db.collection('reviews');
 
-router.get('/', (req, res) => res.send(sampleJSON));
-
 router.get("/all-reviews", (req, res) => {
     const arrayOfReviews = [];
 
@@ -20,7 +18,7 @@ router.get("/all-reviews", (req, res) => {
     })
     .catch(function (error) {
         console.warn("Error:", error);
-        return res.send(arrayOfReviews);
+        return res.send(error);
     })
 });
 

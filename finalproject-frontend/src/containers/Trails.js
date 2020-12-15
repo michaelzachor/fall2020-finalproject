@@ -3,7 +3,14 @@ import axios from 'axios';
 import ShowReviews from '../components/ShowReviews'
 
 function Trails() {
-    let trailsArray = [{name:"Great Eastern", code: "Great_Eastern", link: "/review/Great_Eastern", level: "circle"}, {name: "Chute", code: "Chute", link: "/review/Chute", level: "square"}];
+    let trailsArray = [
+        {name: "Great Eastern", code: "Great_Eastern", link: "/review/Great_Eastern", level: "circle"},
+        {name: "Bear Cub", code: "Bear_Cub", link: "/review/Bear_Cub", level: "circle"}, 
+        {name: "Chute", code: "Chute", link: "/review/Chute", level: "square"},
+        {name: "Bear Claw", code: "Bear_Claw", link: "/review/Bear_Claw", level: "square"},
+        {name: "Breakaway", code: "Breakaway", link: "/review/Breakaway", level: "diamond"},
+        {name: "Wildfire", code: "Wildfire", link: "/review/Wildfire", level: "diamond"}
+    ];
     const [theArray, settheArray] = useState([]);
       useEffect(() => {
         axios

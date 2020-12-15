@@ -4,7 +4,7 @@ function Header({ loggedIn, LogoutFunction, userInformation }) {
     return (
         <header className="Header">
             <div className="siteTitle">
-                <h1>Ski Stuff</h1>
+                <h1>Rate Killington</h1>
             </div>
             <div className="navbar">
                 <nav className="navAccount">

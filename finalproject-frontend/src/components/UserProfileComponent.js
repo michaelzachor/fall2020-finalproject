@@ -2,8 +2,6 @@ import { useState, useMemo, useEffect } from 'react';
 import axios from 'axios';
 import ShowReviews from './ShowReviews'
 
-// take in userInformation from UserProfile.js
-// display userInformation
 function UserProfileComponent({userInformation}) {
     let trailsArray = [{name:"Great Eastern", code: "Great_Eastern", link: "/review/Great_Eastern", level: "circle"}, {name: "Chute", code: "Chute", link: "/review/Chute", level: "square"}];
     const [theArray, settheArray] = useState([]);

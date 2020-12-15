@@ -5,7 +5,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faUtensils, faGlassCheers} from '@fortawesome/free-solid-svg-icons';
 
 function Apres() {
-    let apresArray = [{name:"Strangefellows Pub", code: "Strangefellows_Pub", link: "/review/Strangefellows_Pub", level: "bar"}, {name: "The Lookout Tavern", code: "The_Lookout_Tavern", link: "/review/The_Lookout_Tavern", level: "restaurant"}];
+    let apresArray = [
+        {name:"Strangefellows Pub", code: "Strangefellows_Pub", link: "/review/Strangefellows_Pub", level: "bar"}, 
+        {name: "The Lookout Tavern", code: "The_Lookout_Tavern", link: "/review/The_Lookout_Tavern", level: "restaurant"},
+        {name: "The Garlic", code: "The_Garlic", link: "/review/The_Garlic", level: "restaurant"},
+        {name: "The Pickle Barrel", code: "The_Pickle_Barrel", link: "/review/The_Pickle_Barrel", level: "bar"},
+        {name: "JAX Food and Games", code: "JAX_Food_and_Games", link: "/review/JAX_Food_and_Games", level: "bar"},
+        {name: "Sushi Yoshi", code: "Sushi_Yoshi", link: "/review/Sushi_Yoshi", level: "restaurant"}
+    ];
     const [theArray, settheArray] = useState([]);
       useEffect(() => {
         axios
