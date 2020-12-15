@@ -34,7 +34,4 @@ app.use(function (req, res, next) {
 app.use('/', indexRoute);
 app.use('/review', leaveReviewRoute);
 
-app.listen(port, () => 
-    console.log(`Backend is running at localhost:${port}`)
-);
 

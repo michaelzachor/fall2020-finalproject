@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import ShowReviews from '../components/ShowReviews'
 
@@ -26,7 +26,6 @@ function Trails() {
             <div>
                 <ul>
                     {trailsArray.map((trail, j) => {
-                        console.log("trail: ", trail.name);
                         return (
                         <li key={j}>
                             <div className="placeTitle">
@@ -56,27 +55,5 @@ function Trails() {
         </div>
     );
 }
-
-// function showOrHide(trail, num) {
-//     console.log('calling function');
-//     console.log(btntxt[0])
-//     btntxt[0] = "Less Info"
-//     console.log(btntxt[0])
-    // let info = document.getElementsByClassName(trail);
-    // let btnText = document.getElementsByClassName("showHideButton")[0].outerText;
-    // console.log(btnText);
-    // btnText.innerHTML = "check";
-    // console.log(btnText);
-    // if (btnText == "Show Info") {
-    //     console.log('if');
-    //     // btnText = "Hide Info";
-    //     // btnText.setState("Hide Info");
-    //     // info.style.display = "block";
-    // } else {
-    //     console.log('else');
-    //     // btnText.setState("Show Info");
-    //     // info.style.display = "none";
-    // }
-// }
 
 export default Trails;

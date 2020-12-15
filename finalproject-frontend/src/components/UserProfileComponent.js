@@ -29,7 +29,6 @@ function UserProfileComponent({userInformation}) {
             <h3>Reviews:</h3>
             <ul>
             {theArray.map((item, i) => {
-                console.log("item", item);
                 if (item.userEmail === userInformation.email) {
                     return (
                         <li key={i}>

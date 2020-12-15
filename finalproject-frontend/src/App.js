@@ -21,22 +21,6 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false); // bool to determine if logged in
   const [loading, setLoading] = useState(true); // is page loading? (don't show info before it's loaded)
   const [userInformation, setUserInformation] = useState({});
-  const [reviewInfo, setReviewInfo] = useState([]);
-
-//   useEffect(() => {
-//     axios
-//     .get(
-//         `https://whispering-bastion-69731.herokuapp.com/all-reviews`
-//         )
-//     .then(function (response) {
-//       if (response.data) {
-//         setReviewInfo(response.data);
-//       }
-//     })
-//     .catch(function (error) {
-//         console.warn(error);
-//     })
-// }, []);
 
   const firebaseConfig = {
     apiKey: process.env.REACT_APP_FIREBASE_API,
@@ -54,13 +38,11 @@ function App() {
     if (!firebase.apps.length) {
       firebase.initializeApp(firebaseConfig);
     }
-    console.log('firebase initialized');
   }, [firebaseConfig])
 
   // check to see if user is logged in
   useEffect(() => {
     firebase.auth().onAuthStateChanged(function(user) {
-      console.log({user});
       if(user) {
         setLoggedIn(true);
         setUserInformation(user);
@@ -81,11 +63,10 @@ function App() {
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then(function(response) {
-      console.log('LOGIN RESPONSE', response);
       setLoggedIn(true);
     })
     .catch(function(error) {
-      console.log('LOGIN ERROR', error);
+      console.warn('LOGIN ERROR', error);
       // setLoggedIn(false); // it already is by default
     });
   }
@@ -96,7 +77,7 @@ function App() {
       setLoggedIn(false);
       setUserInformation({});
     }).catch(function(error) {
-      console.log("LOGOUT ERROR", error);
+      console.warn("LOGOUT ERROR", error);
     });
   }
 
@@ -109,45 +90,15 @@ function App() {
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then(function(response) {
-      console.log('VALID ACCOUNT CREATED FOR:', email, response);
       setLoggedIn(true);
     })
     .catch(function(error) {
-      console.log('ACCOUNT CREATION FAILED', error);
+      console.warn('ACCOUNT CREATION FAILED', error);
     })
   }
-  console.log({ loggedIn });
 
-  /* DON'T LOAD PAGE UNTIL LOADING IS FINISHED */
-  // move to right before return
+/* DON'T LOAD PAGE UNTIL LOADING IS FINISHED */
   if(loading) return null;
-
-  /* STORE REVIEWS IN VARIABLE, PUSH THEM TO AN ARRAY */
-  const db = firebase.firestore();
-  const reviews = db.collection("reviews");
-  const reviewArray = [];
-  reviews.get().then(function(querySnapshot) {
-    querySnapshot.forEach(function(doc) {
-        reviewArray.push({id:doc.id, data:doc.data()});
-    });
-});
-
-// maybe goes in backend
-  // const reviewArray = useMemo(() => {
-  //   const reviewArray = [];
-  //   if (firebase.apps.length) {
-  //     const db = firebase.firestore();
-  //     const reviews = db.collection("reviews");
-  //     reviews.get().then(function (querySnapshot) {
-  //       querySnapshot.forEach(function (doc) {
-  //         reviewArray.push({ id: doc.id, data: doc.data() });
-  //       });
-  //     });
-  //   }
-  //   return reviewArray;
-  // }, [firebase]);
-
-  
 
   return (
   <div className="App">
@@ -184,18 +135,18 @@ function App() {
           <Redirect to="/login" />
         ): (
           // otherwise go to UserProfile
-          <UserProfile userInformation={userInformation} reviewArray={reviewArray}/>
+          <UserProfile userInformation={userInformation} />
         )}
       </Route>
 
       {/* TRAILS */}
       <Route exact path="/trails">
-        <Trails reviewArray={reviewArray} />
+        <Trails />
       </Route>
       
       {/* APRES SKI */}
       <Route exact path="/apres_ski">
-        <Apres reviewArray={reviewArray} />
+        <Apres  />
       </Route>
 
       {/* REVIEWS */}

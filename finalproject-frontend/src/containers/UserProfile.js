@@ -1,9 +1,9 @@
 import React from 'react';
 import UserProfileComponent from "../components/UserProfileComponent"
 
-function UserProfile({userInformation, reviewArray}) {
+function UserProfile({userInformation}) {
     return <div><h2>Your Profile</h2>
-        <UserProfileComponent userInformation={userInformation} reviewArray={reviewArray}/>
+        <UserProfileComponent userInformation={userInformation} />
     </div>
 }
 

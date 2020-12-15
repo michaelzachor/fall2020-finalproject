@@ -1,8 +1,6 @@
 import React from 'react';
 
 function ShowReviews({item, isTrail}) {
-    console.log("in showreviews:", item);
-    console.log("isTrail:", isTrail);
     return (
     <div className="UserReview">
         <div className="boxes">

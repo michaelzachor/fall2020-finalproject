@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 import ShowReviews from '../components/ShowReviews';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -28,7 +28,6 @@ function Apres() {
             <div>
                 <ul>
                     {apresArray.map((trail, j) => {
-                        console.log("place: ", trail.name);
                         return (
                         <li key={j}>
                             <h3 className="placeName">{trail.name}</h3>
@@ -39,7 +38,6 @@ function Apres() {
                                     <li className="rate"><a href={trail.link}>Rate it!</a></li>
                                     <li>
                                     {theArray.map((item, i) => {
-                                        console.log("in apres", item)
                                         if (item.name === trail.code) {
                                             return (
                                             <div key={i}>

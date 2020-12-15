@@ -1,4 +1,3 @@
-import Axios from 'axios';
 import React from 'react';
 import {useParams} from 'react-router-dom';
 function LeaveAReview({userInformation}) {
@@ -18,16 +17,11 @@ function LeaveAReview({userInformation}) {
     } else {
         theForm = apresForm;
     }
-    console.log("name: " + name);
-    console.log("[0]:", theForm[0]);
-    console.log(userInformation);
-
-    // Axios.get(`http://localhost:4000/review`)
 
     return (
         <div>
             <h2>{name.split('_').join(' ')} rating</h2>
-            <form action="http://localhost:4000/review/submit">
+            <form action="https://whispering-bastion-69731.herokuapp.com//review/submit">
                 <h4>{theForm[0]}</h4>
                 <div>
                     <input type="radio" name={theForm[0]} value="1" />
@@ -85,7 +79,6 @@ function LeaveAReview({userInformation}) {
                     <input type="text" name="review" placeholder="Leave a review..." />
                 </div>
                 <input type="hidden" value={userInformation.email} name="userEmail" />
-                {/* <input type="hidden" value={trail} name="trail" /> */}
                 <input type="hidden" value={name} name="name" />
                 <input type="hidden" value={theForm[14]} name="type" />
                 <button type="submit">Submit Review</button>
